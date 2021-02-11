@@ -9,4 +9,56 @@ body {
   padding: 0;
   font-family: "Ubuntu", sans-serif;
   font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 400px;
+}
+.number {
+  font-size: 30px;
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  display: grid;
+  place-items: center;
+}
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.large {
+  width: 170px;
+}
+
+h1 {
+  font-size: 55px;
+}
+
+@media only screen and (min-width: 250px) and (max-width: 375px) {
+  .container {
+    width: 320px;
+  }
+  .number {
+    font-size: 20px;
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    display: grid;
+    place-items: center;
+  }
+
+  .large {
+    width: 130px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
 }
