@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-  width: 400px;
+  width: 420px;
 }
 .number {
   font-size: 30px;
@@ -41,9 +41,17 @@ h1 {
   font-size: 55px;
 }
 
-@media only screen and (min-width: 250px) and (max-width: 375px) {
+.btn:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+.card-body .btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+@media only screen and (min-width: 250px) and (max-width: 385px) {
   .container {
-    width: 320px;
+    width: 340px;
   }
   .number {
     font-size: 20px;
