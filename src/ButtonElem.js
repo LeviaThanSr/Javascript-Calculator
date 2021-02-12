@@ -7,14 +7,14 @@ class Button extends Component {
         <div
           className="number btn btn-danger large"
           id="clear"
-          onClick={this.props.handleClick}
+          onClick={this.props.handleClear}
         >
           AC
         </div>
         <button
           className="number btn btn-secondary"
           id="percent"
-          onClick={this.props.handleClick}
+          onClick={this.props.handlePercent}
         >
           %
         </button>
@@ -119,7 +119,7 @@ class Button extends Component {
         <button
           className="number btn btn-primary"
           id="decimal"
-          onClick={this.props.handleClick}
+          onClick={this.props.handleDecimal}
         >
           .
         </button>
