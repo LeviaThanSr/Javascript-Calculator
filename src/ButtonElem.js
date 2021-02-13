@@ -21,7 +21,7 @@ class Button extends Component {
         <button
           className="number btn btn-secondary"
           id="divide"
-          onClick={this.props.handleClick}
+          onClick={() => this.props.handleOperation("/")}
         >
           <span>&#247;</span>
         </button>
@@ -49,7 +49,7 @@ class Button extends Component {
         <button
           className="number btn btn-secondary"
           id="multiply"
-          onClick={this.props.handleClick}
+          onClick={() => this.props.handleOperation("*")}
         >
           <span>&#215;</span>
         </button>
@@ -77,7 +77,7 @@ class Button extends Component {
         <button
           className="number btn btn-secondary"
           id="subtract"
-          onClick={this.props.handleClick}
+          onClick={() => this.props.handleOperation("-")}
         >
           <span>&#8722;</span>
         </button>
@@ -105,9 +105,16 @@ class Button extends Component {
         <button
           className="number btn btn-secondary"
           id="add"
-          onClick={this.props.handleClick}
+          onClick={() => this.props.handleOperation("+")}
         >
           <span>&#43;</span>
+        </button>
+        <button
+          className="number btn btn-primary"
+          id="decimal"
+          onClick={this.props.handleDecimal}
+        >
+          .
         </button>
         <button
           className="number btn btn-primary"
@@ -117,16 +124,9 @@ class Button extends Component {
           0
         </button>
         <button
-          className="number btn btn-primary"
-          id="decimal"
-          onClick={this.props.handleDecimal}
-        >
-          <span>&#8901;</span>
-        </button>
-        <button
           className="number btn btn-success large"
           id="equals"
-          onClick={this.props.handleClick}
+          onClick={() => this.props.handleOperation("=")}
         >
           <span>&#61;</span>
         </button>
