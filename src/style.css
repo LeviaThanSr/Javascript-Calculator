@@ -26,6 +26,9 @@ body {
   display: grid;
   place-items: center;
 }
+.card-header {
+  padding: 9px 18px 9px 18px;
+}
 .card-body {
   display: flex;
   justify-content: center;
