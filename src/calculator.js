@@ -12,9 +12,24 @@ class Calculator extends Component {
   }
   handleClick(e) {
     const value = e.target.innerText;
-    this.setState({
-      outputVal: this.state.outputVal + value,
-    });
+    switch (value) {
+      case "AC":
+        this.setState({
+          outputVal: "0",
+        });
+        break;
+      default:
+        if (this.state.outputVal === "0") {
+          this.setState({
+            outputVal: value,
+          });
+        } else {
+          this.setState({
+            outputVal: this.state.outputVal + value,
+          });
+        }
+        break;
+    }
   }
   render() {
     return (
