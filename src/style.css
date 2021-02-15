@@ -41,7 +41,7 @@ body {
 }
 
 h1 {
-  font-size: 55px;
+  font-size: 65px;
 }
 
 .btn:active {
@@ -51,6 +51,9 @@ h1 {
 .card-body .btn:focus {
   outline: none;
   box-shadow: none;
+}
+.card-header {
+  height: 90px;
 }
 span {
   font-size: 40px;
@@ -73,6 +76,12 @@ span {
   }
 
   h1 {
-    font-size: 40px;
+    font-size: 50px;
+  }
+  .card-header {
+    height: 70px;
+  }
+  span {
+    font-size: 30px;
   }
 }
