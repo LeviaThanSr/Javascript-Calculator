@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap");
-
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
   padding: 0;
@@ -14,11 +12,20 @@ body {
   align-items: center;
   min-height: 100vh;
 }
-
 .container {
   width: 420px;
 }
-.number {
+.container .card .card-header {
+  padding: 9px 18px 9px 18px;
+  min-height: 100px;
+}
+.container .card .card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.container .card .card-body .number {
   font-size: 30px;
   width: 80px;
   height: 80px;
@@ -26,43 +33,28 @@ body {
   display: grid;
   place-items: center;
 }
-.card-header {
-  padding: 9px 18px 9px 18px;
-}
-.card-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.large {
+.container .card .card-body .large {
   width: 170px;
 }
-
-h1 {
+.container .card .card-header .screen {
   font-size: 65px;
 }
-
-.btn:active {
+.container .card .card-body .btn:active {
   transform: scale(0.95);
   opacity: 0.8;
 }
-.card-body .btn:focus {
+.container .card .card-body .large:focus {
   outline: none;
   box-shadow: none;
 }
-.card-header {
-  height: 90px;
-}
-span {
+.container .card .card-body span {
   font-size: 40px;
 }
 @media only screen and (min-width: 250px) and (max-width: 385px) {
   .container {
     width: 340px;
   }
-  .number {
+  .container .card .card-body .number.number {
     font-size: 20px;
     width: 60px;
     height: 60px;
@@ -71,17 +63,17 @@ span {
     place-items: center;
   }
 
-  .large {
+  .container .card .card-body .large {
     width: 130px;
   }
 
-  h1 {
+  .container .card .card-header .screen {
     font-size: 50px;
   }
-  .card-header {
+  .container .card .card-header {
     height: 70px;
   }
-  span {
+  .container .card .card-body span {
     font-size: 30px;
   }
 }
