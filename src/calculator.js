@@ -7,16 +7,16 @@ class Calculator extends Component {
     super(props);
     this.state = {
       outputVal: "0",
-      preVal: "",
-      operator: "",
+      calc: undefined,
+      operator: undefined,
     };
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(e) {
-    const value = e.target.innerText;
-    const { outputVal, operator, preVal } = this.state;
+    const value = e.target.getAttribute("name");
+    const { outputVal, operator, calc } = this.state;
     if (!Number.isNaN(Number(value))) {
-      if (this.state.outputVal === "0") {
+      if (outputVal === "0") {
         this.setState({
           outputVal: value,
         });
@@ -31,7 +31,7 @@ class Calculator extends Component {
       case "AC":
         this.setState({
           outputVal: "0",
-          preVal: "",
+          calc: "",
           operator: "",
         });
         break;
@@ -42,19 +42,29 @@ class Calculator extends Component {
           });
         }
         break;
+      case "negative":
+        this.setState({
+          outputVal:
+            outputVal.charAt(0) === "-" ? outputVal.substr(1) : "-" + outputVal,
+        });
+        break;
       default:
         if (!operator) {
           this.setState({
             operator: value,
-            preVal: outputVal,
+            calc: outputVal,
             outputVal: "",
           });
+        } else if (value === "=") {
+          const result = eval(`${calc} ${operator} ${outputVal}`);
+          this.setState({
+            operator: undefined,
+            calc: result,
+            outputVal: result,
+          });
         } else {
-          const result = eval(`${preVal} ${operator} ${outputVal}`);
           this.setState({
             operator: value,
-            preVal: result,
-            outputVal: value === "=" ? result : "0",
           });
         }
         break;
