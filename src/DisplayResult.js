@@ -3,9 +3,11 @@ import React, { Component } from "react";
 class Display extends Component {
   render() {
     return (
-      <div className="card-header text-end" id="display">
-        <h4>{this.props.miniDisplay}</h4>
-        <h1 className="screen m-0">{this.props.result}</h1>
+      <div className="card-header text-end">
+        <h4 className="miniScreen">{this.props.miniDisplay}</h4>
+        <h1 id="display" className="Screen m-0">
+          {this.props.Display}
+        </h1>
       </div>
     );
   }
