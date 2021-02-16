@@ -6,75 +6,67 @@ class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      outputVal: "0",
-      calc: undefined,
-      operator: undefined,
+      displayValue: "0",
+      lastClicked: undefined,
+      storedValue: undefined,
     };
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(e) {
-    const value = e.target.getAttribute("name");
-    const { outputVal, operator, calc } = this.state;
-    if (!Number.isNaN(Number(value))) {
-      if (outputVal === "0") {
-        this.setState({
-          outputVal: value,
-        });
-      } else {
-        this.setState({
-          outputVal: outputVal + value,
-        });
-      }
-      return;
-    }
-    switch (value) {
+    const btnValue = e.target.getAttribute("name");
+    const { displayValue, storedValue, lastClicked } = this.state;
+
+    switch (btnValue) {
       case "AC":
         this.setState({
-          outputVal: "0",
-          calc: "",
-          operator: "",
+          displayValue: "0",
+          storedValue: undefined,
+          lastClicked: undefined,
         });
         break;
       case ".":
-        if (outputVal.indexOf(".") === -1) {
+        if (displayValue.indexOf(".") === -1) {
           this.setState({
-            outputVal: outputVal + value,
+            displayValue: displayValue + btnValue,
           });
         }
         break;
       case "negative":
         this.setState({
-          outputVal:
-            outputVal.charAt(0) === "-" ? outputVal.substr(1) : "-" + outputVal,
+          displayValue:
+            displayValue.charAt(0) === "-"
+              ? displayValue.slice(1)
+              : "-" + displayValue,
+        });
+        break;
+      case "=":
+        const result = eval(storedValue);
+        this.setState({
+          displayValue: result,
+          storedValue: result,
+          lastClicked: btnValue,
         });
         break;
       default:
-        if (!operator) {
-          this.setState({
-            operator: value,
-            calc: outputVal,
-            outputVal: "",
-          });
-        } else if (value === "=") {
-          const result = eval(`${calc} ${operator} ${outputVal}`);
-          this.setState({
-            operator: undefined,
-            calc: result,
-            outputVal: result,
-          });
-        } else {
-          this.setState({
-            operator: value,
-          });
-        }
+        const checkForZero =
+          displayValue === "0" ? btnValue : displayValue + btnValue;
+        this.setState({
+          storedValue: checkForZero,
+          displayValue: checkForZero,
+          lastClicked: btnValue,
+        });
         break;
     }
   }
   render() {
+    const { storedValue } = this.state;
     return (
       <div className="container">
         <div className="card shadow rounded">
-          <Display result={this.state.outputVal} />
+          <Display
+            result={this.state.displayValue}
+            miniDisplay={storedValue === undefined ? "0" : storedValue}
+          />
           <Button handleClick={this.handleClick} />
         </div>
         <pre style={{ position: "absolute", left: 100, top: 300 }}>
