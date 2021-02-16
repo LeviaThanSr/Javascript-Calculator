@@ -36,10 +36,10 @@ body {
 .container .card .card-body .large {
   width: 170px;
 }
-.container .card .card-header h1 {
+.container .card .card-header .Screen {
   font-size: 65px;
 }
-.container .card .card-header h4 {
+.container .card .card-header .miniScreen {
   padding: 0 3px;
   margin: 0;
   color: #02841a;
