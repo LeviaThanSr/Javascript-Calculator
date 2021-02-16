@@ -15,11 +15,11 @@ class Button extends Component {
         <div
           className="number btn btn-secondary"
           id="sign"
-          name="negative"
+          name="%"
           onClick={handleClick}
         >
-          <span name="negative" onClick={handleClick}>
-            &#177;
+          <span name="%" onClick={handleClick}>
+            &#37;
           </span>
         </div>
         <div
