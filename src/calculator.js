@@ -14,6 +14,7 @@ class Calculator extends Component {
   }
   handleClick(e) {
     const btnValue = e.target.getAttribute("name");
+    const operators = ["+", "-", "*", "/"];
     const { displayValue, storedValue, lastClicked } = this.state;
 
     switch (btnValue) {
@@ -31,13 +32,11 @@ class Calculator extends Component {
           });
         }
         break;
-      case "negative":
+      case "%":
         this.setState({
-          displayValue:
-            displayValue.charAt(0) === "-"
-              ? displayValue.slice(1)
-              : "-" + displayValue,
+          displayValue: String(+displayValue / 100),
         });
+
         break;
       case "=":
         const result = eval(storedValue);
@@ -48,25 +47,25 @@ class Calculator extends Component {
         });
         break;
       default:
-        const checkForZero =
-          displayValue === "0" ? btnValue : displayValue + btnValue;
+        var checkingOperation = null;
+        operators.includes(lastClicked) && operators.includes(btnValue)
+          ? (checkingOperation = displayValue.slice(0, -1) + btnValue)
+          : (checkingOperation =
+              displayValue === "0" ? btnValue : displayValue + btnValue);
         this.setState({
-          storedValue: checkForZero,
-          displayValue: checkForZero,
+          storedValue: checkingOperation,
+          displayValue: checkingOperation,
           lastClicked: btnValue,
         });
         break;
     }
   }
   render() {
-    const { storedValue } = this.state;
+    const { displayValue } = this.state;
     return (
       <div className="container">
         <div className="card shadow rounded">
-          <Display
-            result={this.state.displayValue}
-            miniDisplay={storedValue === undefined ? "0" : storedValue}
-          />
+          <Display Display={displayValue} miniDisplay={displayValue} />
           <Button handleClick={this.handleClick} />
         </div>
         <pre style={{ position: "absolute", left: 100, top: 300 }}>
