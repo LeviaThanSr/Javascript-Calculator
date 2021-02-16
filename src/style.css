@@ -36,8 +36,13 @@ body {
 .container .card .card-body .large {
   width: 170px;
 }
-.container .card .card-header .screen {
+.container .card .card-header h1 {
   font-size: 65px;
+}
+.container .card .card-header h4 {
+  padding: 0 3px;
+  margin: 0;
+  color: #02841a;
 }
 .container .card .card-body .btn:active {
   transform: scale(0.95);
@@ -62,13 +67,14 @@ body {
     display: grid;
     place-items: center;
   }
-
   .container .card .card-body .large {
-    width: 130px;
+    min-width: 130px;
   }
-
-  .container .card .card-header .screen {
+  .container .card .card-header h1 {
     font-size: 50px;
+  }
+  .container .card .card-header h4 {
+    font-size: 20px;
   }
   .container .card .card-header {
     height: 70px;
