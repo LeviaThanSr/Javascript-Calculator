@@ -8,57 +8,71 @@ class Calculator extends Component {
     this.state = {
       displayValue: "0",
       lastClicked: undefined,
-      storedValue: undefined,
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleName = this.handleName.bind(this);
+  }
+  handleName(e) {
+    const btnValue = e.target.getAttribute("name");
+    this.setState({
+      displayValue: btnValue,
+    });
   }
   handleClick(e) {
     const btnValue = e.target.getAttribute("name");
+    const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     const operators = ["+", "-", "*", "/"];
-    const { displayValue, storedValue, lastClicked } = this.state;
+    const { displayValue, lastClicked } = this.state;
 
     switch (btnValue) {
       case "AC":
         this.setState({
           displayValue: "0",
-          storedValue: undefined,
           lastClicked: undefined,
         });
         break;
       case ".":
-        if (displayValue.indexOf(".") === -1) {
+        const displayValueArr = displayValue.split(/[\\+\-\\*\\/]/);
+        if (!displayValueArr[displayValueArr.length - 1].includes(".")) {
           this.setState({
-            displayValue: displayValue + btnValue,
+            displayValue: displayValue + ".",
           });
         }
         break;
-      case "%":
-        this.setState({
-          displayValue: String(+displayValue / 100),
-        });
-
-        break;
       case "=":
-        const result = eval(storedValue);
+        const result = eval(displayValue);
         this.setState({
           displayValue: result,
-          storedValue: result,
           lastClicked: btnValue,
         });
         break;
       default:
         var checkingOperation = null;
-        operators.includes(lastClicked) && operators.includes(btnValue)
-          ? (checkingOperation = displayValue.slice(0, -1) + btnValue)
-          : (checkingOperation =
-              displayValue === "0" ? btnValue : displayValue + btnValue);
+
+        if (operators.includes(btnValue))
+          if (operators.includes(lastClicked) && btnValue !== "-") {
+            const lastNumberIndex = displayValue
+              .split("")
+              .reverse()
+              .findIndex((i) => i !== " " && numbers.includes(parseFloat(i)));
+            checkingOperation =
+              displayValue.slice(0, displayValue.length - lastNumberIndex + 1) +
+              ` ${btnValue} `;
+          } else {
+            checkingOperation = ` ${displayValue} ${btnValue} `;
+          }
+        else {
+          checkingOperation =
+            displayValue === "0" ? btnValue : displayValue + btnValue;
+        }
         this.setState({
-          storedValue: checkingOperation,
           displayValue: checkingOperation,
-          lastClicked: btnValue,
         });
         break;
     }
+    this.setState({
+      lastClicked: btnValue,
+    });
   }
   render() {
     const { displayValue } = this.state;
@@ -66,11 +80,11 @@ class Calculator extends Component {
       <div className="container">
         <div className="card shadow rounded">
           <Display Display={displayValue} miniDisplay={displayValue} />
-          <Button handleClick={this.handleClick} />
+          <Button handleClick={this.handleClick} handleName={this.handleName} />
         </div>
-        <pre style={{ position: "absolute", left: 100, top: 300 }}>
+        {/* <pre style={{ position: "absolute", left: 100, top: 300 }}>
           {JSON.stringify(this.state, null, 2)}
-        </pre>
+        </pre> */}
       </div>
     );
   }
