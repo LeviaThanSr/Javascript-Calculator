@@ -1,6 +1,6 @@
 {
-  "homepage": "http://leviathansr.github.io/Javascript-Calculator",
-  "name": "javascript-calculator",
+  "homepage": "http://leviathansr.github.io/ReactJS-Calculator",
+  "name": "reactjs-calculator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
