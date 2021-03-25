@@ -1,1 +1,1 @@
-# [Javascript-Calculator](http://leviathansr.github.io/Javascript-Calculator/)
+# [ReactJS-Calculator](http://leviathansr.github.io/ReactJS-Calculator/)
